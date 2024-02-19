@@ -44,16 +44,26 @@ fn palindrome(a:&str) -> bool{
 
 // Given a sorted array of integers, implement a function that returns the index of the first occurrence of a given number.
 
-fn first_occurence_sorted_array(a:Vec<i32>,element:i32) -> Option<usize>{
+fn first_occurence_sorted_array(arr: Vec<i32>, target: i32) -> Option<usize> {
+    let mut left = 0;
+    let mut right = arr.len() - 1;
+    let mut first_occ: Option<usize> = None;
 
-    for i in 0..a.len(){
-        if a[i] == element{
-            return Some(i);
+    while left <= right {
+        let mid = left + (right - left) / 2;
+
+        if arr[mid] == target {
+            first_occ = Some(mid);
+            right = mid - 1;
+        } else if arr[mid] < target {
+            left = mid + 1;
+        } else {
+            right = mid - 1;
         }
     }
-    None
-}
 
+    first_occ
+}
 // Given a string of words, implement a function that returns the shortest word in the string.
 
 fn shortest_word(a:String) -> usize{
