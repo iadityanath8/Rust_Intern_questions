@@ -68,15 +68,15 @@ fn first_occurence_sorted_array(arr: Vec<i32>, target: i32) -> Option<usize> {
 
 fn shortest_word(a:String) -> usize{
     let a:Vec<&str> = a.split_whitespace().collect();
-    let mut max_size = 0;
+    let mut min_size = i32::MAX;
     
     for i in a{
-        if i.len() > max_size{
-            max_size = i.len();
+        if i.len() < max_size{
+            min_size = i.len();
         }
     }
     
-    max_size
+    min_size
 }
 
 // Implement a function that checks whether a given number is prime or not
